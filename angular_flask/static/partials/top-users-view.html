@@ -1,0 +1,38 @@
+<div class="row m-twenty">
+	<div class="col-lg-4" ng-repeat="user in TopEmailAnalytics track by $index">
+		<div class="widget">
+			<div class="widget-title row">
+				<div class="col-lg-10">
+					<h5 style="margin-top: 17px;" ng-click="setUserDetails(user)">
+						<a >{{user['user_email']}}</a>
+					</h5>
+				</div>
+				<div class="col-lg-2">
+					<img class="userimage" src="/static/image/users/user3.png">
+				</div>
+				
+			</div>
+			<div class="widget-content row">
+				<div class="row" style="max-height:150px;">
+					<div class="col-lg-5">
+						<h1 class="email-number text-center">{{user['email_count']}}</h1>
+						<h4 class="email-text text-center">Emails</h4>
+					</div>
+					<div class="col-lg-7">
+						<div ng-init="showGraph($index,user['sentiment'])">
+		                    <div id="{{ 'donut-' + $index }}" style="max-height:200px;"></div> 
+		                    <!-- <div class="donut-"{{$index}} style="max-height:200px;"></div> -->
+		                </div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4" ng-repeat="emotion in getTopEmotion(user['emotion'],$index).reverse() | limitTo:3">
+						<h1 class="emotion-number text-center">{{emotion[1].toFixed(2)}}%</h1>
+						<!--<h1 class="emotion-number text-center color-{{emotion[0]}}">{{emotion[1].toFixed(2)}}%</h1>-->
+						<h4 class="emotion-text text-center">{{emotion[0]}}</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

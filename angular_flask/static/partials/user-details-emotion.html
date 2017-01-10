@@ -1,0 +1,72 @@
+<div class="row m-twenty user-detail-widget">
+	<div id="filter-area" class="row">
+		<div class="pull-right" style="margin-right:2%;" uib-dropdown>
+	      <i id="split-button" class="fa fa-cog " uib-dropdown-toggle></i> 
+	      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="split-button">
+	        <li role="menuitem"><a ng-click="getFilteredAnalytics(25)">Last 25</a></li>
+	        <li role="menuitem"><a ng-click="getFilteredAnalytics(50)">Last 50</a></li>
+	        <li role="menuitem"><a ng-click="getFilteredAnalytics(100)">Last 100</a></li>
+	      </ul>
+	    </div>
+	    <div class="pull-right" style="margin-right:2%;" ng-click="showEmotionAnalysis()">
+	      <i class="fa fa-line-chart"></i> 
+	    </div>
+	</div>
+	<div id="user-details" class="col-lg-3">
+		<div class="row ">
+			<div class="">
+				<img class="userimage-lg" style="margin-left:32%"src="/static/image/users/user3.png">
+			</div>
+		</div>
+		<div class="row ">
+			<h4 style="margin-top: 17px" class="text-center">
+				{{current_detail_user['user_email']}}
+			</h4>
+		</div>
+		<div class="row">
+			<h4 class="email-last-text text-center" ng-show="current_detail_user['filtered']">Last</h4>
+			<h1 class="email-number text-center">{{current_detail_user['email_count']}}</h1>
+			<h4 class="email-text text-center">Emails</h4>
+		</div>
+	</div>
+	<div id="sentiment-details" class="col-lg-3">
+		<div ng-init="showDetailSentGraph(current_detail_user['sentiment'])">
+	        <div id="detailsent-donut" style="max-height:200px;"></div> 
+	    </div>
+	</div>
+	<div id="emotion-details" class="col-lg-6">
+		<div ng-init="showEmotionBar(current_detail_user['emotion'])">
+	        <div id="detailemo-bar" style="max-height:200px;"></div> 
+	    </div>
+	</div>
+</div>
+
+
+<div class="row" style="margin-left:20px;">
+	<h2 style="margin-top: 0px;">Frequent Conversations</h2>
+</div>
+
+<div class="row m-twenty" style="margin-top: 0px;">
+	<div class="col-lg-4 " ng-repeat="recip in freqRecipients | limitTo:9">
+		<div class="row reciep-widget">
+			<div class="col-lg-6">
+				<img class="userimage-lg" style="margin-left:32%"src="/static/image/users/user1.png">
+				<div style="font-size:18px;font-weight: 200;margin-left:8%">{{recip[0]}}</div>
+			</div>
+			<div class="col-lg-6" style="padding-top: 20px;padding-right: 0px;">
+				<span style="font-size:44px;font-weight: 600;margin-left:8%">{{recip[1]}}</span>
+				<span style="font-size:10px;">Emails</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row" style="margin-left:20px;">
+	<h2 style="margin-top: 0px;">Conversations Hypergraph</h2>
+</div>
+
+<div class="row m-twenty" style="margin-top: 0px;">
+	<div class="col-lg-12 reciep-widget">
+		<nvd3 options="options" data="graphdata" class="with-3d-shadow with-transitions"></nvd3>
+	</div>
+</div>

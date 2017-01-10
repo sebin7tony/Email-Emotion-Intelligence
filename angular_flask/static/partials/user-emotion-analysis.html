@@ -1,0 +1,28 @@
+<div class="row m-twenty" style="background-color:white;margin:10px;padding:5px;">
+	<div class="pull-right" style="margin-right:2%;" ng-click="setChartType('line')">
+      <i class="fa fa-line-chart"></i> 
+    </div>
+    <div class="pull-right" style="margin-right:2%;" ng-click="setChartType('bar')">
+      <i class="fa fa-bar-chart"></i> 
+    </div>
+</div>
+<div class="row m-twenty" style="background-color:white;margin:10px;">
+	<p class="text-center" style="margin:5px;">Email wise emotion analysis</p>
+	<div class="detailed-barchart" ng-init="getEmailWiseAnalyticsData()">
+        <div id="emoanalysis-bar" style="max-height:200px;"></div> 
+    </div>
+</div>
+
+<div class="email-details" ng-show="selectedEmail">
+	<div class="email-subject">
+		<pre><b>Subject :</b> {{selectedEmail['Subject'][0]}}</pre>
+	</div>
+	<div class="email-info">
+		<p><b>Date :</b> {{selectedEmail['Date'][0]}}</p>
+		<p><b>From :</b> {{selectedEmail['From'][0]}}</p>
+		<p><b>To :</b> {{selectedEmail['To'][0]}}</p>
+	</div>
+	<div class="email-description">
+		<pre>{{selectedEmail['content'][0]}}</pre>
+	</div>
+</div>
